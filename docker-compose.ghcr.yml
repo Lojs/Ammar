@@ -1,0 +1,25 @@
+# استخدم هذا الملف لتشغيل عَمار بسحب الصورة الجاهزة من GitHub مباشرة،
+# بدون تحميل كود المشروع على جهازك إطلاقًا.
+#
+# الاستخدام:
+#   1. حمّل هذا الملف لحاله بأي مجلد فاضي بجهازك.
+#   2. عدّل السطر اللي فيه "REPLACE_WITH_YOUR_GITHUB_USERNAME_AND_REPO" بالأسفل
+#      ليصير مثلاً: ghcr.io/ahmed/ammar:latest
+#   3. أنشئ ملف .env بجنبه وحط فيه على الأقل JWT_SECRET (راجع .env.example
+#      بمستودع المشروع على GitHub لبقية المتغيرات الاختيارية).
+#   4. شغّل: docker compose -f docker-compose.ghcr.yml up -d
+
+services:
+  ammar:
+    image: ghcr.io/REPLACE_WITH_YOUR_GITHUB_USERNAME_AND_REPO:latest
+    container_name: ammar
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    env_file: .env
+    environment:
+      PORT: 8080
+      DATA_DIR: /data
+      TZ: Asia/Kuwait
+    volumes:
+      - ./data:/data
