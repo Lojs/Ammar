@@ -3,7 +3,7 @@
 
 services:
   ammar:
-    image: ghcr.io/Lojs/Ammar:latest
+    image: ghcr.io/lojs/ammar:latest
     container_name: ammar
     restart: unless-stopped
     ports:
