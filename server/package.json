@@ -1,0 +1,23 @@
+{
+  "name": "ammar-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.600.0",
+    "adm-zip": "^0.5.14",
+    "bcrypt": "^5.1.1",
+    "better-sqlite3": "^11.1.2",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.0",
+    "nanoid": "^5.0.7",
+    "node-cron": "^3.0.3"
+  }
+}
