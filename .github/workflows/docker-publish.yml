@@ -1,0 +1,59 @@
+name: Build and publish Docker image
+
+# يشتغل هذا تلقائيًا كل ما ترفع تعديل لفرع main، أو تسوي إصدار (tag) جديد،
+# أو تضغط "Run workflow" يدويًا من تبويب Actions بأعلى الصفحة.
+on:
+  push:
+    branches: ["main"]
+    tags: ["v*.*.*"]
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: تنزيل الكود
+        uses: actions/checkout@v4
+
+      - name: تسجيل الدخول إلى GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: تجهيز أسماء وعلامات الصورة
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=semver,pattern={{version}}
+            type=sha
+
+      - name: تجهيز QEMU (لدعم بناء ARM64)
+        uses: docker/setup-qemu-action@v3
+
+      - name: تجهيز Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: بناء الصورة ورفعها
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
