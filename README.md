@@ -41,9 +41,8 @@
 ما تحتاج تحمّل كود المشروع إطلاقًا — فقط اسحب الصورة الجاهزة من GitHub Container Registry:
 
 1. أنشئ مجلد فاضي بجهازك، وحط فيه ملف [`docker-compose.ghcr.yml`](./docker-compose.ghcr.yml) من هذا المستودع.
-2. افتحه وغيّر `REPLACE_WITH_YOUR_GITHUB_USERNAME_AND_REPO` لاسم المستودع الفعلي (مثال: `ghcr.io/USERNAME/ammar:latest`).
-3. أنشئ بجنبه ملف `.env` (انسخ محتوى [`.env.example`](./.env.example)) وعدّل `JWT_SECRET` إذا حبيت.
-4. شغّل:
+2. أنشئ بجنبه ملف `.env` (انسخ محتوى [`.env.example`](./.env.example)) وعدّل `JWT_SECRET` إذا حبيت.
+3. شغّل:
 
    ```bash
    docker compose -f docker-compose.ghcr.yml up -d
