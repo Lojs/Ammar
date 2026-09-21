@@ -11,7 +11,7 @@
 
 services:
   ammar:
-    image: ghcr.io/REPLACE_WITH_YOUR_GITHUB_USERNAME_AND_REPO:latest
+    image: ghcr.io/Lojs/Ammar:latest
     container_name: ammar
     restart: unless-stopped
     ports:
