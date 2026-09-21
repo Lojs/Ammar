@@ -1,0 +1,14 @@
+services:
+  ammar:
+    build: .
+    container_name: ammar
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    env_file: .env
+    environment:
+      PORT: 8080
+      DATA_DIR: /data
+      TZ: Asia/Kuwait
+    volumes:
+      - ./data:/data
