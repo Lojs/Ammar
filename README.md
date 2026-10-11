@@ -6,7 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)](#-التشغيل-بسحب-الصورة-الجاهزة-الأسهل)
-![الإصدار](https://img.shields.io/badge/الإصدار-1.0.0-blue)
+![Version](https://img.shields.io/badge/الإصدار-1.0.0-blue)
 
 </div>
 
